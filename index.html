@@ -161,7 +161,12 @@
   opacity: 0;
   transform: translateY(-10px);
   pointer-events: none;
+
+ #heroBox {
+  transition: all 0.5s ease;
 }
+ 
+ 
 </style>
 
  
@@ -185,11 +190,9 @@
 
   <input type="tel" id="phoneInput" placeholder="Enter Phone Number" />
   <button onclick="checkInvite()">Check</button>
-  <div class="loader" id="loader"></div>
+  <div class="hero-box" id="heroBox">
 </div>
 
-<div id="resultBox" class="result-box"></div>
-      </div>
       <!-- Twinkles -->
       <div id="twinkles"></div>
     </section>
@@ -274,7 +277,7 @@
   async function checkInvite() {
   const phone = document.getElementById("phoneInput").value.trim();
   const loader = document.getElementById("loader");
-  const resultBox = document.getElementById("resultBox");
+  const heroBox = document.getElementById("heroBox");
    const heroContent = document.getElementById("heroContent");
 
   if (phone.length !== 11) {
@@ -302,27 +305,24 @@
  heroContent.classList.add("hide");
 
 setTimeout(() => {
-  resultBox.innerHTML = `
+ heroBox.innerHTML = `
     <h3>Congratulations ${rec.name}!</h3>
     <p>You’ve been selected to attend <strong>The SheDiamond Lagos Elite Tea Hangout</strong>.</p>
     <p style="font-style:; font-weight: bold; color: #f2ecec;">
       This Thursday, 30th April, 2026 @ 2md Floor 91 Obafemi Awolowo Way, Ikeja, Lagos.
     </p>
     <p>Your ACCESS CODE: <strong style="color:#f2ecec;">${rec.reservation}</strong></p>
-  `;
-  resultBox.classList.add("show");
-}, 300);
-
+   </a>
+`;
+ 
   } else {
  heroContent.classList.add("hide");
 
 setTimeout(() => {
-  resultBox.innerHTML = `
+heroBox.innerHTML = `
     <h3>😔 Invitation Not Found</h3>
     <p>Please contact your group admin.</p>
   `;
-  resultBox.classList.add("show");
-}, 300);
   }
 }
 
