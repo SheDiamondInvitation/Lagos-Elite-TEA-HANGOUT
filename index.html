@@ -322,12 +322,25 @@ async function checkInvite(){
 
     setTimeout(()=>{
       heroBox.innerHTML=`
-        <h3>Congratulations ${rec.name}!</h3>
-        <p>You’ve been selected to attend <strong>The SheDiamond Lagos Elite Tea Hangout</strong>.</p>
-        <p style="font-weight:bold;color:#fff;">
-          This Thursday, 30th April, 2026 @ Ikeja, Lagos.
-        </p>
-        <p>Your ACCESS CODE: <strong>${rec.reservation}</strong></p>
+    <h3 style="color:rgba(255,255,255,0.95); font-weight:700;">
+      Congratulations ${rec.name}!
+    </h3>
+
+    <p style="color:rgba(255,255,255,0.85);">
+      You’ve been selected to attend <strong>The SheDiamond Lagos Elite Tea Hangout</strong>.
+    </p>
+
+    <p style="color:rgba(255,255,255,0.75); font-weight:500;">
+      This Thursday, 30th April, 2026 @ 2nd Floor, 91 Obafemi Awolowo Way, Opp Baffi Furniture, Ikeja, Lagos.
+    </p>
+
+    <p style="color:rgba(255,255,255,0.85);">
+      Your ACCESS CODE: <strong style="color:rgba(255,255,255,0.95);">${rec.reservation}</strong>
+    </p>
+
+    <p style="color:rgba(255,255,255,0.8); margin-top:10px;">
+      Kindly take a screenshot of this invitation.
+    </p>
       `;
     },300);
 
