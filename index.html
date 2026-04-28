@@ -299,23 +299,22 @@
   if (data && data[phone]) {
     const rec = data[phone];
 
-    resultBox.classList.remove("show");
+ heroContent.classList.add("hide");
 
 setTimeout(() => {
   resultBox.innerHTML = `
-    <h3>🎉 Congratulations ${rec.name}!</h3>
-    <p>You’ve been selected to attend <strong>The SheDiamond Exclusive Event</strong>.</p>
-    <p style="font-style: italic; font-weight: bold; color: #ff66cc;">
-      This Saturday, 13th December, 2025 @ SHEDIAMOND HEAD OFFICE...
+    <h3>Congratulations ${rec.name}!</h3>
+    <p>You’ve been selected to attend <strong>The SheDiamond Lagos Elite Tea Hangout</strong>.</p>
+    <p style="font-style:; font-weight: bold; color: #f2ecec;">
+      This Thursday, 30th April, 2026 @ 2md Floor 91 Obafemi Awolowo Way, Ikeja, Lagos.
     </p>
-    <p>Your TICKET ID: <strong style="color:#ff006e;">${rec.reservation}</strong></p>
-    <a href="${rec.adminNumber}" class="whatsapp-btn" target="_blank">💬 Confirm Invitation</a>
+    <p>Your ACCESS CODE: <strong style="color:#f2ecec;">${rec.reservation}</strong></p>
   `;
   resultBox.classList.add("show");
-}, 100);
+}, 300);
 
   } else {
-   resultBox.classList.remove("show");
+ heroContent.classList.add("hide");
 
 setTimeout(() => {
   resultBox.innerHTML = `
@@ -323,7 +322,7 @@ setTimeout(() => {
     <p>Please contact your group admin.</p>
   `;
   resultBox.classList.add("show");
-}, 100);
+}, 300);
   }
 }
 
