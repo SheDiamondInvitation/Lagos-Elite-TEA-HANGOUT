@@ -99,7 +99,62 @@
   .twinkle { position:absolute; width:2px; height:2px; border-radius:50%; background:white; opacity:0.8; animation: twinkleAnim 2s infinite; }
   @keyframes twinkleAnim { 0%,100%{opacity:0.8;}50%{opacity:0;} }
 
+  .result-box {
+  margin-top: 1.5rem;
+  padding: 2rem;
+  background: rgba(10,10,20,0.7);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(255,255,0,0.25);
+  backdrop-filter: blur(10px);
+  color: white;
+  width: 100%;
+
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.5s ease;
+}
+
+.result-box.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.result-box h3 {
+  color: white;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.result-box p {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.95rem;
+}
+
+.result-box .whatsapp-btn {
+  display:inline-block;
+  margin-top:0.8rem;
+  padding:10px 16px;
+  background:#d63384; /* same as your main button */
+  border-radius:8px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  transition: all 0.3s ease;
+}
+
+.result-box .whatsapp-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(214,51,132,0.6);
+}
+
+ .result-box.show {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 0 30px rgba(255,255,0,0.4);
+}
 </style>
+
+ 
 </head>
 <body>
 
@@ -121,16 +176,13 @@
         <input type="tel" id="phoneInput" placeholder="Enter Phone Number" pattern="[0-9]*" inputmode="numeric" />
         <button onclick="checkInvite()">Check</button>
         <div class="loader" id="loader"></div>
+
+       <div id="resultBox" class="result-box"></div>
       </div>
       <!-- Twinkles -->
       <div id="twinkles"></div>
     </section>
 
-
-    <!-- POPUP -->
-    <div class="popup" id="popup">
-      <div class="popup-content" id="popupContent"></div>
-    </div>
 
   </div> <!-- End mainContent -->
 
@@ -211,8 +263,7 @@
   async function checkInvite() {
   const phone = document.getElementById("phoneInput").value.trim();
   const loader = document.getElementById("loader");
-  const popupContent = document.getElementById("popupContent");
-  const popup = document.getElementById("popup");
+  const resultBox = document.getElementById("resultBox");
 
   if (phone.length !== 11) {
     alert("Enter a valid 11-digit number");
@@ -236,27 +287,31 @@
   if (data && data[phone]) {
     const rec = data[phone];
 
-    popupContent.innerHTML = `
-      <h3>🎉 Congratulations ${rec.name}!</h3>
-      <p>You’ve been selected to attend <strong>The SHEDIAMOND TEA HANGOUT</strong>.</p>
-      <p style="font-style: italic; font-weight: bold; color: #ff66cc;">
-        This Thursday 30th April, 2026 @ 2nd floor, 91 Obafemi Awolowo Road, Opposite Baffi Furniture, Balogun Bus Stop, Ikeja, Lagos. TIME: 12:00PM.
-      </p>
-      <p>Your TICKET ID: <strong style="color:#ff006e;">${rec.reservation}</strong> has been sent to <strong>${phone}</strong>.</p>
-      <p>Kindly take a screenshot of this invitation.</p>
-      <a href="${rec.adminNumber}?text=Thanks%20you%20Admin%2C%20I%20confirmed%20my%20reservation%20and%20I%20will%20be%20there" class="whatsapp-btn" target="_blank">💬 Confirm Invitation</a>
-      <button class="back-btn" onclick="closePopup()">Back</button>
-    `;
+    resultBox.classList.remove("show");
 
-    popup.style.display = "flex";
+setTimeout(() => {
+  resultBox.innerHTML = `
+    <h3>🎉 Congratulations ${rec.name}!</h3>
+    <p>You’ve been selected to attend <strong>The SheDiamond Exclusive Event</strong>.</p>
+    <p style="font-style: italic; font-weight: bold; color: #ff66cc;">
+      This Saturday, 13th December, 2025 @ SHEDIAMOND HEAD OFFICE...
+    </p>
+    <p>Your TICKET ID: <strong style="color:#ff006e;">${rec.reservation}</strong></p>
+    <a href="${rec.adminNumber}" class="whatsapp-btn" target="_blank">💬 Confirm Invitation</a>
+  `;
+  resultBox.classList.add("show");
+}, 100);
 
   } else {
-    popupContent.innerHTML = `
-      <h3>😔 Invitation Not Found</h3>
-      <p>Please contact your group admin to confirm your reservation or Check SMS/Whatsapp.</p>
-      <button class="back-btn" onclick="closePopup()">Back</button>
-    `;
-    popup.style.display = "flex";
+   resultBox.classList.remove("show");
+
+setTimeout(() => {
+  resultBox.innerHTML = `
+    <h3>😔 Invitation Not Found</h3>
+    <p>Please contact your group admin.</p>
+  `;
+  resultBox.classList.add("show");
+}, 100);
   }
 }
 
