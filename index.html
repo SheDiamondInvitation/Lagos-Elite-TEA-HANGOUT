@@ -152,6 +152,16 @@
   transform: translateY(0);
   box-shadow: 0 0 30px rgba(255,255,0,0.4);
 }
+
+ #heroContent {
+  transition: all 0.5s ease;
+}
+
+#heroContent.hide {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
 </style>
 
  
@@ -167,17 +177,18 @@
     <!-- HERO SECTION -->
     <section class="hero" id="home">
       <div class="hero-box" id="heroBox">
-        <h2>TEA HANGOUT Invitation Checker</h2>
+       <div id="heroContent">
+  <h2>TEA HANGOUT Invitation Checker</h2>
 
-        <!-- Countdown -->
-        <div id="countdown"></div>
-        <span id="toGo">TO GO!</span>
+  <div id="countdown"></div>
+  <span id="toGo">TO GO!</span>
 
-        <input type="tel" id="phoneInput" placeholder="Enter Phone Number" pattern="[0-9]*" inputmode="numeric" />
-        <button onclick="checkInvite()">Check</button>
-        <div class="loader" id="loader"></div>
+  <input type="tel" id="phoneInput" placeholder="Enter Phone Number" />
+  <button onclick="checkInvite()">Check</button>
+  <div class="loader" id="loader"></div>
+</div>
 
-       <div id="resultBox" class="result-box"></div>
+<div id="resultBox" class="result-box"></div>
       </div>
       <!-- Twinkles -->
       <div id="twinkles"></div>
@@ -264,6 +275,7 @@
   const phone = document.getElementById("phoneInput").value.trim();
   const loader = document.getElementById("loader");
   const resultBox = document.getElementById("resultBox");
+   const heroContent = document.getElementById("heroContent");
 
   if (phone.length !== 11) {
     alert("Enter a valid 11-digit number");
