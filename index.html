@@ -413,6 +413,8 @@ function goBack(){
   `;
 
   rebuildCountdown();
+  reconnectCountdown();
+  updateCountdown();
 }
 
 // ✅ REBUILD COUNTDOWN
@@ -435,6 +437,15 @@ function rebuildCountdown(){
     div.appendChild(label);
 
     countdownEl.appendChild(div);
+  });
+}
+
+ function reconnectCountdown(){
+  const units = ['Days','Hours','Minutes','Seconds'];
+  const elements = document.querySelectorAll('#countdown .number');
+
+  units.forEach((unit, i) => {
+    spans[unit] = elements[i];
   });
 }
 </script>
